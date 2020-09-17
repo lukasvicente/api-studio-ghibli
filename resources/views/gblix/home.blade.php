@@ -1,7 +1,7 @@
 @extends('gblix.master.layout')
 
 @section('content')
-    <div class="container">
+    <div class="container show-delay">
         <h1 class="mt-5">Lorem Ipsum</h1>
         <p class="lead">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc euismod scelerisque lacus, nec porttitor elit interdum eget. Integer arcu diam, scelerisque eget dolor ac, dapibus bibendum eros. In auctor malesuada semper.

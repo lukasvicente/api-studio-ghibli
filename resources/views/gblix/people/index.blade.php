@@ -11,7 +11,7 @@
 
         </div>
 
-        <table class="table table-bordered" id="people">
+        <table class="table table-bordered show-delay" id="people">
             <thead>
             <tr>
 
