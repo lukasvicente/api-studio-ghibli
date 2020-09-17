@@ -1,8 +1,7 @@
 # Aplicação para estudo
 
 ## Sobre o projeto
-Usando a API do [Studio Ghibili](https://ghibliapi.herokuapp.com/), com o intuito de coletar dados e colocar em nossa base, onde esses dados foram films e people.
-e desenvolver comandos no artisan para popular a base.
+Usando a API do [Studio Ghibili](https://ghibliapi.herokuapp.com/), com o intuito de coletar dados e colocar em nossa base, onde esses dados foram films e people. Desenvolver comandos no artisan para popular a base.
 
 1. Comando Artisan, usando o seguinte nome: api:crawl
 2. Agendado via schedule do Laravel à cada duas horas
@@ -77,5 +76,5 @@ $ nano /etc/crontab
  ```
   - Iniciar o cron
 ```sh 
-$service cron start
+$ service cron start
  ```
