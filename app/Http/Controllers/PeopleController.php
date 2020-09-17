@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Facades\ApiGblix;
+use App\FilmHasPeople;
 use App\People;
 use Illuminate\Http\Request;
 use League\Csv\Writer;
@@ -50,7 +51,6 @@ class PeopleController extends Controller
                     }
                 }
                 $csv->output('people.csv');
-                //return response()->json($request->type);
 
             }else{
 
@@ -97,6 +97,21 @@ class PeopleController extends Controller
 
                 ]);
                 People::create($data);
+
+            }
+            foreach ($people as $value){
+
+                foreach ( $value->films as $film ){
+
+                    $data = ([
+
+                        'films_id' => substr($film,-36),
+                        'peoples_id' => $value->id,
+                    ]);
+
+                    FilmHasPeople::insert($data);
+
+                }
 
             }
 
