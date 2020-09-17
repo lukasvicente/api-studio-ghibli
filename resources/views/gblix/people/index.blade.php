@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <div class="container">
+    <div class="container show-delay">
         <h1>Listagem de Personagens</h1>
 
         <div class="btn-group" role="group" aria-label="Basic example">
@@ -11,7 +11,7 @@
 
         </div>
 
-        <table class="table table-bordered show-delay" id="people">
+        <table class="table table-bordered" id="people">
             <thead>
             <tr>
 
