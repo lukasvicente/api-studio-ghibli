@@ -1,61 +1,81 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Aplicação para estudo
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
+## Sobre o projeto
+Usando a API do [Studio Ghibili](https://ghibliapi.herokuapp.com/), com o intuito de coletar dados e colocar em nossa base, onde esses dados foram films e people.
+e desenvolver comandos no artisan para popular a base.
 
-## About Laravel
+1. Comando Artisan, usando o seguinte nome: api:crawl
+2. Agendado via schedule do Laravel à cada duas horas
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Retornar uma rota GET /pessoas com os respectivos valores.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+O projeto foi desenvolvido no framework PHP [Laravel](https://laravel.com/).
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Getting Started Guide
+Guia de instalação da aplicação, Documentação: <https://laravel.com/docs/7.x/installation>
 
-## Learning Laravel
+### Pré-requisitos
+ 
+- Composer
+- PHP >= 7.1.3
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Instalação
+- Clonar repositorio 
+```sh 
+$ git clone https://github.com/lukasvicente/api-studio-ghibli.git
+```
+ - Instalar o composer
+ ```sh 
+$ composer install
+```
+- Renomear ou Copiar .env.example arquivo para .env #editar campos com credenciais do banco
+```sh 
+$ cp .env.example .env 
+```
+- Gerar key
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+```sh 
+$ php artisan key:generate
+```
+- Gerar migrate da aplicação
 
-## Laravel Sponsors
+```sh 
+$ php artisan migrate
+```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+- Aplicação em execução
 
-### Premium Partners
+```sh 
+$ php artisan serve
+```
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[OP.GG](https://op.gg)**
 
-## Contributing
+- Para acessar a Aplicação em execução
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```sh 
+http://localhost:8000/
+```
 
-## Code of Conduct
+### Para popular a base de dados com as informaçes da API Studio Ghibli
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```sh 
+$ php artisan api:crawl
+ 
+```
 
-## Security Vulnerabilities
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Para a aplicação popular a base de duas em duas horas
 
-## License
+- De acordo com o linux, alterar o crontab
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```sh 
+$ nano /etc/crontab
+ ```
+ - Adicionar linha, de acordo com a documentação laravel, https://laravel.com/docs/7.x/scheduling
+```sh 
+* * * * * cd /path-to-your-project && php artisan schedule:run >> /dev/null 2>&1
+ ```
+  - Iniciar o cron
+```sh 
+$service cron start
+ ```
